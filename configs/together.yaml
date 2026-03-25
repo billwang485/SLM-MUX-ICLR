@@ -1,0 +1,42 @@
+# SLM-MUX: Together AI provider preset
+# All models served via Together AI serverless API
+
+providers:
+  - name: together
+    type: together
+    api_key_env: TOGETHER_API_KEY
+    max_retries: 5
+    request_timeout: 300
+    max_concurrent: 50
+
+models:
+  - id: "Qwen/Qwen2.5-7B-Instruct-Turbo"
+    provider: together
+  - id: "mistralai/Mistral-Small-24B-Instruct-2501"
+    provider: together
+  - id: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+    provider: together
+  - id: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    provider: together
+
+confidence:
+  method: consistency
+  params:
+    ignore_empty: true
+
+benchmark:
+  name: math500
+  dataset_path: data/math_500.json
+  sample_size: -1
+  seed: 42
+
+mux:
+  samples_per_model: 5
+  temperature: 0.3
+  max_tokens: 4096
+  tie_breaker: validation_accuracy
+  num_workers: 50
+
+output:
+  dir: ./results
+  format: json

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slm-mux"
+version = "0.1.0"
+description = "Small Language Model Multiplexer — route, aggregate, and evaluate multiple SLM providers"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = [
+    "requests",
+    "httpx",
+    "pyyaml",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+openai = ["openai"]
+huggingface = ["datasets"]
+science = ["numpy", "scikit-learn"]
+all = ["openai", "datasets", "numpy", "scikit-learn"]
+
+[project.scripts]
+slm-mux = "slm_mux.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

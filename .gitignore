@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Secrets
+secrets/
+api_keys.json
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Experiment outputs
+results/
+output/
+*.out
+*.err
+
+# Data (user downloads)
+data/
+
+# vLLM registry (local deployment)
+slurm/

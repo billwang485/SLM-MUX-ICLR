@@ -1,0 +1,36 @@
+# SLM-MUX: Local vLLM servers preset
+# Models served by local vLLM instances registered in slurm/vllm_servers.json
+
+providers:
+  - name: vllm_local
+    type: vllm
+    registry_path: slurm/vllm_servers.json
+    request_timeout: 120
+
+models:
+  - id: "Qwen/Qwen2.5-7B-Instruct"
+    provider: vllm_local
+  - id: "mistralai/Mistral-Small-24B-Instruct-2501"
+    provider: vllm_local
+
+confidence:
+  method: consistency
+  params:
+    ignore_empty: true
+
+benchmark:
+  name: math500
+  dataset_path: data/math_500.json
+  sample_size: -1
+  seed: 42
+
+mux:
+  samples_per_model: 5
+  temperature: 0.3
+  max_tokens: 4096
+  tie_breaker: validation_accuracy
+  num_workers: 10
+
+output:
+  dir: ./results
+  format: json
