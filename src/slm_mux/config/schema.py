@@ -36,7 +36,7 @@ BENCHMARK_DEFAULTS: Dict[str, Dict[str, Any]] = {
             "model_name": "Salesforce/codet5p-110m-embedding",
             "tau_cluster": 0.90,
         },
-        "temperature": 0.8,
+        "temperature": 0.3,
     },
 }
 
