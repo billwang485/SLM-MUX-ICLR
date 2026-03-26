@@ -33,7 +33,7 @@ def main():
     offline_parser = subparsers.add_parser(
         "offline", help="Offline MUX simulation from pre-collected data"
     )
-    offline_parser.add_argument("--benchmark", type=str, required=True, choices=["math500", "gpqa", "gsm8k", "ifeval"])
+    offline_parser.add_argument("--benchmark", type=str, required=True, choices=["math500", "gpqa", "gsm8k", "ifeval", "humaneval"])
     offline_parser.add_argument("--data-dir", type=str, required=True, help="Dir containing model JSONs")
     offline_parser.add_argument("--models", type=str, default="", help="Comma-sep model IDs (default: auto-detect)")
     offline_parser.add_argument("--samples", type=int, default=5, help="Samples per model to vote")
@@ -45,7 +45,7 @@ def main():
     search_parser = subparsers.add_parser(
         "search", help="Search for optimal model combinations"
     )
-    search_parser.add_argument("--benchmark", type=str, required=True, choices=["math500", "gpqa", "gsm8k", "ifeval"])
+    search_parser.add_argument("--benchmark", type=str, required=True, choices=["math500", "gpqa", "gsm8k", "ifeval", "humaneval"])
     search_parser.add_argument("--data-dir", type=str, required=True, help="Dir containing model JSONs")
     search_parser.add_argument("--models", type=str, default="", help="Comma-sep model IDs (default: auto-detect)")
     search_parser.add_argument("--k-min", type=int, default=2, help="Min models in combo")

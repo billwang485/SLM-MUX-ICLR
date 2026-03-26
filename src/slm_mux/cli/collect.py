@@ -37,6 +37,9 @@ def _get_benchmark(name: str) -> BenchmarkTask:
     elif name == "ifeval":
         from slm_mux.benchmarks.ifeval import IFEvalTask
         return IFEvalTask()
+    elif name == "humaneval":
+        from slm_mux.benchmarks.humaneval import HumanEvalTask
+        return HumanEvalTask()
     else:
         raise ValueError(f"Unknown benchmark: {name}")
 

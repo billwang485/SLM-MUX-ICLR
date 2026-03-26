@@ -5,6 +5,7 @@ from slm_mux.benchmarks.math500 import MATH500Task
 from slm_mux.benchmarks.gpqa import GPQATask
 from slm_mux.benchmarks.gsm8k import GSM8KTask
 from slm_mux.benchmarks.ifeval import IFEvalTask
+from slm_mux.benchmarks.humaneval import HumanEvalTask
 
 __all__ = [
     "BenchmarkTask",
@@ -13,4 +14,5 @@ __all__ = [
     "GPQATask",
     "GSM8KTask",
     "IFEvalTask",
+    "HumanEvalTask",
 ]

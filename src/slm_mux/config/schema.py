@@ -86,7 +86,7 @@ class ConfidenceConfig:
 class BenchmarkConfig:
     """Configuration for the benchmark to evaluate."""
 
-    name: str = "math500"  # math500, gpqa, gsm8k, ifeval, humaneval
+    name: str = "math500"  # math500 | gpqa | gsm8k | ifeval | humaneval
     dataset_path: str = ""
     sample_size: int = -1  # -1 for all
     seed: int = 42

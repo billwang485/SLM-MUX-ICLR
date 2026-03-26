@@ -134,6 +134,8 @@ class OfflineMUX:
             bench = "GSM8K"
         elif bench in ("IFEVAL",):
             bench = "IFEVAL"
+        elif bench in ("HUMANEVAL",):
+            bench = "HUMANEVAL"
 
         result: Dict[str, ModelQuestionData] = {}
 
@@ -142,7 +144,7 @@ class OfflineMUX:
             # Determine question key
             if bench == "MATH":
                 q = resp.get("problem", "")
-            elif bench == "IFEVAL":
+            elif bench in ("IFEVAL", "HUMANEVAL"):
                 q = resp.get("prompt", "")
             else:
                 q = resp.get("question", "")

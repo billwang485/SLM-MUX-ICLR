@@ -1,15 +1,17 @@
-# SLM-MUX: Small Language Model Multiplexer
+# SLM-MUX: Orchestrating Small Language Models for Reasoning
 
-**Confidence-based multi-model routing for small language models at inference time.**
+**Training-free, confidence-based multi-model routing at inference time.**
 
 [![ICLR 2026](https://img.shields.io/badge/ICLR-2026-blue.svg)](https://openreview.net/)
+[![arXiv](https://img.shields.io/badge/arXiv-2510.05077-b31b1b.svg)](https://arxiv.org/abs/2510.05077)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
 SLM-MUX routes each query to the best small language model (SLM) in a pool by
 generating multiple samples from each model, estimating per-model confidence,
-and selecting the most confident model's answer. This is a **pure inference-time**
-method -- no training, no fine-tuning, no additional data needed.
+and selecting the most confident model's answer. The method is **training-free**
+-- it requires no fine-tuning of the underlying language models, only
+collaboration data from multiple models at inference time.
 
 ## Key Results
 
@@ -53,7 +55,7 @@ embedding-based confidence scoring.
 ```bash
 pip install -e .
 
-# With optional dependencies
+# With optional dependencies (embedding models, language detection, etc.)
 pip install -e ".[all]"
 ```
 
@@ -95,7 +97,7 @@ slm-mux collect --config configs/together.yaml
 ### 3. Run offline MUX evaluation
 
 ```bash
-# Evaluate with majority-vote confidence routing
+# Evaluate with confidence-based routing
 slm-mux offline \
     --benchmark math500 \
     --data-dir results/ \
@@ -115,12 +117,13 @@ slm-mux search \
 
 ## Supported Benchmarks
 
-| Benchmark | Type | Scoring | Confidence Method |
+| Benchmark | Type | Scoring | Default Confidence |
 |-----------|------|---------|-------------------|
-| **MATH-500** | Math reasoning | Exact match | Consistency (default) |
-| **GSM8K** | Grade school math | Exact match | Consistency (default) |
-| **GPQA** | Graduate-level MCQA | Multiple choice | Consistency (default) |
-| **IFEval** | Instruction following | Deterministic constraint verification | Embedding (auto-selected) |
+| **MATH-500** | Math reasoning | Exact match | Consistency |
+| **GSM8K** | Grade school math | Exact match | Consistency |
+| **GPQA** | Graduate-level MCQA | Multiple choice | Consistency |
+| **IFEval** | Instruction following | Deterministic constraint verification | Embedding |
+| **HumanEval** | Code generation | Execution-based pass@k | Embedding |
 
 Benchmark-specific defaults (confidence method, temperature) are automatically
 applied -- just specify the benchmark name and the best-known parameters are
@@ -154,7 +157,7 @@ used out of the box.
 src/slm_mux/
 ├── engine/         # Core MUX algorithm (live + offline simulation)
 ├── confidence/     # 7 confidence evaluation methods
-├── benchmarks/     # MATH-500, GSM8K, GPQA, IFEval
+├── benchmarks/     # MATH-500, GSM8K, GPQA, IFEval, HumanEval
 ├── providers/      # LLM provider backends
 ├── extractors/     # Answer extraction (LaTeX, numeric, MCQA, code)
 ├── config/         # YAML config loading + per-benchmark defaults
@@ -166,11 +169,11 @@ src/slm_mux/
 ## Citation
 
 ```bibtex
-@inproceedings{wang2026slmmux,
-  title={SLM-MUX: Confidence-Based Multi-Model Routing for Small Language Models},
-  author={Wang, Chenyu and others},
-  booktitle={International Conference on Learning Representations (ICLR)},
-  year={2026}
+@article{wang2025slm,
+  title={SLM-MUX: Orchestrating Small Language Models for Reasoning},
+  author={Wang, Chenyu and Wan, Zishen and Kang, Hao and Chen, Emma and Xie, Zhiqiang and Krishna, Tushar and Reddi, Vijay Janapa and Du, Yilun},
+  journal={arXiv preprint arXiv:2510.05077},
+  year={2025}
 }
 ```
 
