@@ -143,11 +143,14 @@ used out of the box.
 
 ## Supported Providers
 
+Tested in our experiments:
 - **Together AI** -- serverless API
 - **vLLM** -- local OpenAI-compatible servers
+
+Also supported (OpenAI-compatible interface, not yet validated in experiments):
 - **LMDeploy** -- local TurboMind servers
 - **SGLang** -- local SGLang servers
-- **OpenAI** -- GPT models (for evaluation/comparison)
+- **OpenAI** -- OpenAI API
 - **Google Gemini** -- Gemini API
 - **HuggingFace Endpoints** -- HF Inference Endpoints
 
